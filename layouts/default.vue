@@ -1,82 +1,95 @@
 <script setup>
-import {MessageSquareTextIcon, FileTextIcon, SettingsIcon, PlusIcon, ArrowRightIcon, LogOutIcon} from 'lucide-vue-next';
+import { MessageCircleIcon , FileTextIcon, SettingsIcon, PlusIcon, ArrowRightIcon, LogOutIcon } from 'lucide-vue-next'
 
 const user = {
   name: 'John Doe',
-  avatar: 'https://via.placeholder.com/150'
+  avatar: '#',
 }
+
+const navigation = [
+  { label: 'Chat', href: '/', icon: MessageCircleIcon,  },
+  { label: 'Documenten', href: '/documents', icon: FileTextIcon },
+  { label: 'Instellingen', href: '/settings', icon: SettingsIcon },
+]
+
+const history = [
+  { id: 1, summary: 'Hoe maak ik een Figma design?' },
+  { id: 2, summary: 'Werken AI chatbots echt?' },
+  { id: 3, summary: 'Wordt alle data veilig verwerkt?' },
+  { id: 4, summary: 'Waarom zijn bananen krom?' },
+  { id: 5, summary: 'Is AI de toekomst?' },
+  { id: 6, summary: 'Kan mijn baas zien wat ik hier in typ?' },
+]
 </script>
 
 <template>
-  <div>
-    <aside>
-      <div>
-        <img src="" alt="Logo"/>
-      </div>
-      <nav>
-        <div>
-          <div>Algemeen</div>
-          <ul>
-            <li>
-              <NuxtLink to="/">
-                <MessageSquareTextIcon/>
-                Chat
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/">
-                <FileTextIcon/>
-                Documenten
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/">
-                <SettingsIcon/>
-                Instellingen
-              </NuxtLink>
-            </li>
-          </ul>
+  <div class="relative flex h-full w-full overflow-hidden">
+    <aside class="hidden lg:flex lg:w-72 lg:flex-col lg:shrink-0">
+      <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-border p-6">
+        <div class="shrink-0 mb-12">
+          <img src="../assets/images/logo-dark.svg" alt="Logo" class="h-8 w-auto"/>
         </div>
+        <nav class="space-y-12">
+          <div>
+            <div class="text-xs font-semibold text-muted-foreground mb-3">Algemeen</div>
+            <ul class="flex flex-1 flex-col space-y-3 font-medium text-sm">
+              <li v-for="item in navigation">
+                <NuxtLink :to="item.href" class="flex items-center h-9 rounded-lg hover:bg-muted duration-300" activeClass="bg-muted">
+                  <div class="p-2 rounded-lg bg-muted mr-3">
+                    <component :is="item.icon" class="h-5 w-5"/>
+                  </div>
+                  {{ item.label }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
 
-        <div>
-          <div>Chat geschiedenis</div>
-          <ul>
-            <li v-for="chat in history">
-              <NuxtLink to="/chat">
-                {{ chat.summary }}
-              </NuxtLink>
-            </li>
-          </ul>
-          <button>Bekijk alles</button>
-          <button>
-            Nieuwe chat
-            <PlusIcon/>
-          </button>
-        </div>
-      </nav>
-      <div>
-        <a href="mailto:test@test.com">
           <div>
-            Heb je feedback?
-            Neem contact op
+            <div class="text-xs font-semibold text-muted-foreground mb-3">Chat geschiedenis</div>
+            <ul class="flex flex-1 flex-col font-medium text-sm mb-3">
+              <li v-for="chat in history">
+                <NuxtLink :to="`/chat/${chat.id}`" class="flex items-center h-9 rounded-lg hover:bg-muted duration-300 px-2">
+                  <span class="overflow-hidden text-ellipsis whitespace-nowrap">
+                    {{ chat.summary }}
+                  </span>
+                </NuxtLink>
+              </li>
+            </ul>
+            <Button variant="outline" class="w-full mb-3">Bekijk alles</Button>
+            <Button class="w-full">
+              Nieuwe chat
+              <PlusIcon class="h-4 w-4 ml-2"/>
+            </Button>
           </div>
-          <ArrowRightIcon/>
-        </a>
-        <div>
-          <div>
+        </nav>
+        <div class="mt-auto space-y-6">
+          <a href="mailto:test@test.com" class="group flex justify-between items-center bg-gradient-to-br from-primary to-secondary text-primary-foreground text-sm rounded-lg p-4">
             <div>
-              <img :src="user.avatar" :alt="user.name">
+              <span class="block font-semibold mb-1">Heb je feedback?</span>
+              Neem contact op
             </div>
-            {{ user.name }}
+            <ArrowRightIcon class="h-6 w-6 group-hover:translate-x-0.5 duration-100 ease-in"/>
+          </a>
+          <div class="flex justify-between items-center">
+            <div class="flex items-center font-medium text-sm">
+              <Avatar :src="user.avatar" :alt="user.name" class="h-10 w-10 mr-3"/>
+              {{ user.name }}
+            </div>
+            <Button variant="ghost" size="icon">
+              <LogOutIcon class="h-4 w-4"/>
+            </Button>
           </div>
-          <button>
-            <LogOutIcon/>
-          </button>
         </div>
       </div>
     </aside>
-    <main>
-      <slot/>
-    </main>
+    <div class="flex flex-1 min-h-screen max-w-full overflow-hidden">
+      <header></header>
+      <main class="h-full w-full max-h-screen overflow-auto">
+        <div class="h-full px-4 sm:px-6 lg:px-8 py-10">
+          <slot/>
+        </div>
+      </main>
+    </div>
+
   </div>
 </template>

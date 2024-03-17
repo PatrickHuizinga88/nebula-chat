@@ -8,7 +8,7 @@ export const FORM_ITEM_INJECTION_KEY
 <script lang="ts" setup>
 import { provide } from 'vue'
 import { useId } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '~/lib/utils'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']

@@ -6,10 +6,14 @@ export default defineNuxtConfig({
         openaiApiKey: process.env.OPENAI_API_KEY,
         public: {
             supabaseUrl: process.env.SUPABASE_URL,
-            supabaseAnonKey: process.env.SUPABASE_ANON_KEY
+            supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
         }
     },
-    modules: ['@nuxtjs/supabase', 'shadcn-nuxt'],
+    modules: [
+        '@nuxtjs/supabase',
+        'shadcn-nuxt',
+        '@nuxtjs/i18n',
+    ],
     postcss: {
         plugins: {
             tailwindcss: {},
@@ -17,6 +21,7 @@ export default defineNuxtConfig({
         },
     },
     shadcn: {
-        componentDir: './components/ui'
+        prefix: '',
+        componentDir: './components/ui',
     }
 })
