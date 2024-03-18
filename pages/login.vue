@@ -12,6 +12,7 @@ const supabase = useSupabaseClient()
 
 const email = ref('')
 const loading = ref(false)
+const error = ref('')
 const emailSent = ref(false)
 
 const formSchema = toTypedSchema(z.object({
@@ -32,7 +33,9 @@ const onSubmit = handleSubmit(async values => {
         emailRedirectTo: 'http://localhost:3000/confirm',
       }
     })
-    if (error) throw error
+    if (error) {
+      throw new Error(error.message)
+    }
     emailSent.value = true
   } catch (error) {
     throw new Error(error)
