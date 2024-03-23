@@ -24,8 +24,9 @@ const selectSuggestions = (suggestion) => {
   input.value = suggestion
 
   if (chatInput.value) {
-    console.log(chatInput.value)
-    chatInput.value.focus()
+    nextTick(() => {
+      chatInput.value.focus()
+    })
   }
 }
 </script>

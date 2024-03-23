@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@tanstack/vue-table':
+    specifier: ^8.15.0
+    version: 8.15.0(vue@3.4.21)
   '@vee-validate/zod':
     specifier: ^4.12.6
     version: 4.12.6(vue@3.4.21)
@@ -2105,6 +2108,21 @@ packages:
     resolution: {integrity: sha512-aYX01Ke9hunpoCexYAgQucEpARGQ5w/cqHFrIR+e9gdKb1QWTsVJuTJ2ozQzIAxLyRQe/m+2RqzkyOOGiMKRQA==}
     dependencies:
       tslib: 2.6.2
+    dev: false
+
+  /@tanstack/table-core@8.14.0:
+    resolution: {integrity: sha512-wDhpKJahGHWhmRt4RxtV3pES63CoeadljGWS/xeS9OJr1HBl2NB+OO44ht3sxDH5j5TRDAbQzC0NvSlsUfn7lQ==}
+    engines: {node: '>=12'}
+    dev: false
+
+  /@tanstack/vue-table@8.15.0(vue@3.4.21):
+    resolution: {integrity: sha512-FKyOKR+ctfTpRBBuk/ETHX+iR7PIAhu+rACA9CbleL4jrQXaBDtHLHh+dwKudeCmRl9XccJPVF8RRlO9l1Pn9A==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      vue: '>=3.2'
+    dependencies:
+      '@tanstack/table-core': 8.14.0
+      vue: 3.4.21(typescript@5.4.2)
     dev: false
 
   /@trysound/sax@0.2.0:
