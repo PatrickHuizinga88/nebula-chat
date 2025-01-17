@@ -24,7 +24,7 @@ const onSubmit = async () => {
     })
     if (error) {
       error.value = error.message
-      throw new Error(error.message)
+      throw error
     }
     emailSent.value = true
   } catch (error) {
