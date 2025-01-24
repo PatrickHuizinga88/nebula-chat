@@ -7,7 +7,7 @@ const user = {
 }
 
 const navigation = [
-  { label: 'Chat', href: '/chat', icon: MessageCircleIcon,  },
+  { label: 'Chat', href: '/', icon: MessageCircleIcon,  },
   { label: 'Documenten', href: '/documents', icon: FileTextIcon },
   { label: 'Instellingen', href: '/settings', icon: SettingsIcon },
 ]
@@ -47,7 +47,7 @@ const history = [
           <div class="text-xs font-semibold text-muted-foreground mb-3">Chat geschiedenis</div>
           <ul class="flex flex-1 flex-col font-medium text-sm mb-3">
             <li v-for="chat in history">
-              <NuxtLink :to="`/chat/${chat.id}`" class="flex items-center h-9 rounded-lg hover:bg-muted duration-300 px-2">
+              <NuxtLink :to="`/${chat.id}`" class="flex items-center h-9 rounded-lg hover:bg-muted duration-300 px-2">
                   <span class="overflow-hidden text-ellipsis whitespace-nowrap">
                     {{ chat.summary }}
                   </span>

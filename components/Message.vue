@@ -17,7 +17,7 @@ defineProps<{
     </div>
     <Avatar src="#" class="shrink-0 ml-3"/>
   </div>
-  <div v-else class="flex justify-start mr-[52px]">
+  <div v-else class="flex justify-start mr-[52px] pb-8">
     <div class="flex justify-center items-center shrink-0 bg-muted rounded-full h-10 w-10 mr-3">
       <BotIcon class="h-6 w-6 text-primary"/>
     </div>

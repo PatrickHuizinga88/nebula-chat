@@ -10,7 +10,7 @@ const error = ref('')
 
 watch(user, () => {
   if (user.value) {
-    return navigateTo('/chat')
+    return navigateTo('/')
   }
   error.value = 'Verification failed, please try again.'
 }, { immediate: true })
